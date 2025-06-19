@@ -1,0 +1,26 @@
+{% extends 'anime/base.html' %}{% block body %}
+
+<form action="" method="GET">
+    <input type="search" name="anime_name">
+    <button type="submit">Search</button>
+
+</form>
+           
+{% for AnimeCatalog in anime_objects %}
+{{ AnimeCatalog.title}}
+</br>
+{% endfor %}
+
+page:{{ anime_objects.number }} of {{ anime_objects.paginator.num_pages }}
+
+{% if anime_objects.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{anime_objects.previous_page_number}}">Previous</a>
+{% endif %}
+
+{% if anime_objects.has_next %}
+    <a href="?page={{anime_objects.next_page_number}}">Next</a>
+    <a href="?page={{anime_objects.paginator.num_pages}}">Last</a>
+{% endif %}
+
+{% endblock %}
