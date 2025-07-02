@@ -16,7 +16,7 @@ class AnimeCatalog(models.Model):
     premiered = models.DateTimeField(auto_now_add=True)
     duration = models.DurationField(default=timedelta(minutes=24))
     views = models.PositiveIntegerField(default=0)
-    image = models.ImageField(upload_to='anime_covers/', blank=True, null=True) 
+    image = models.CharField(max_length=300)
     score = models.FloatField(
     default=0.0,  
     validators=[

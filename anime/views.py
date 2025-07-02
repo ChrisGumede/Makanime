@@ -16,4 +16,4 @@ def Anime_List(request):
     page = request.GET.get('page')
     anime_objects = paginator.get_page(page)
 
-    return render(request,'Anime/anime_list.html',{'anime_objects':anime_objects})
+    return render(request,'Anime/index.html',{'anime_objects':anime_objects})
