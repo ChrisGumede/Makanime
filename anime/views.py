@@ -1,19 +1,24 @@
 from django.shortcuts import render
 from .models import AnimeCatalog
+from .models import models
 from django.core.paginator import Paginator
 
 # Create your views here.
-def Anime_List(request):
-    anime_objects = AnimeCatalog.objects.all()
+def index(request):
+    catalog = AnimeCatalog.objects.all()
 
     #search funtionality
     anime_name = request.GET.get('anime_name')
     if anime_name != '' and anime_name is not None:
-        anime_objects = anime_objects.filter(title__icontains=anime_name)
+        catalog = catalog.filter(title__icontains=anime_name)
     
     #creat paginator instances
-    paginator = Paginator(anime_objects,2)
+    paginator = Paginator(catalog,2)
     page = request.GET.get('page')
-    anime_objects = paginator.get_page(page)
+    catalog = paginator.get_page(page)
 
-    return render(request,'Anime/index.html',{'anime_objects':anime_objects})
+    return render(request,'Anime/index.html',{'catalog':catalog})
+
+def detail(request,id):
+    catalog = AnimeCatalog.objects.get(id=id) 
+    return render(request,'anime/detail.html',{'catalog':catalog })
