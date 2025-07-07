@@ -6,3 +6,7 @@
 env/
 venv
 *.gitignore.*
+#paycache
+__pycache__/
+*.py[cod]
+*.pyo
